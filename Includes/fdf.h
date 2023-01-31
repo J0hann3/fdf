@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
+/*   By: johanne <johanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:32:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/01/30 16:38:46 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/01/31 14:52:49 by johanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,6 @@
 # define TRANSLATION 5
 # define ZOOM_IN 1.1
 # define ZOOM_OUT 0.9
-
-// -------A FAIRE-------
-//	- Parsing des donnees a faire et les stocker dans une structure
-//	- Fonction qui dessine une ligne entre deux points dans le plan 
-//		isometrique en 2D
-//	- Fonction qui fait une rotation de 30 degres du plan dans le sens horaire
-//	- Fonction qui fait une translation changement de l'origine du repere
-//	- Fonction qui ajoute le z aux coordonnes
 
 typedef struct s_coordonnee_3d
 {
