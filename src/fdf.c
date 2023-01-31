@@ -6,11 +6,12 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:17:53 by jvigny            #+#    #+#             */
-/*   Updated: 2023/01/30 16:57:08 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/01/31 19:21:12 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
 /*\*/
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {

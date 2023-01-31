@@ -6,7 +6,7 @@
 #    By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/31 18:39:31 by jvigny            #+#    #+#              #
-#    Updated: 2023/01/31 19:07:46 by jvigny           ###   ########.fr        #
+#    Updated: 2023/01/31 19:27:01 by jvigny           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME = fdf
 
 CC = cc
 CFLAGS =  -Wall -Werror -Wextra -g3
-LFLAGS = -lmlx -lXext -lX11 -lm -L$(MINILIBX)
-INCLUDES = -I$(HEADERS_DIR) -I$(MINILIBX_HEADERS)
+LFLAGS = -lmlx -lXext -lX11 -lm -L$(MINILIBX_DIR)
+INCLUDES = -I$(MINILIBX_HEADERS) -I$(HEADERS_DIR)
 
 MINILIBX_DIR = ./minilibx-linux/
 MINILIBX_HEADERS = $(MINILIBX_DIR)
@@ -43,7 +43,7 @@ OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
 all:	$(NAME)
 
 $(NAME):	$(MINILIBX) $(OBJ_DIR) $(OBJ)
-	$(CC) $(CFLAGS) $(LFLAGS) $(INCLUDES) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(INCLUDES) $(LFLAGS) -o $(NAME)
 	
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
@@ -53,7 +53,7 @@ $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@
 
 $(MINILIBX):
-	make -C $(MINILIBX_DIR)
+	make -C $(MINILIBX_DIR) all
 
 clean:
 	make -C $(MINILIBX_DIR) clean
@@ -63,6 +63,6 @@ fclean:	clean
 	rm -f $(MINILIBX)
 	rm -f $(NAME)
 
-re: clean all
+re: fclean all
 
 .PHONY : all clean fclean re
