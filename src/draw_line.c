@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:50:08 by jvigny            #+#    #+#             */
-/*   Updated: 2023/01/30 16:40:29 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/01/31 20:27:41 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,49 +151,3 @@ void	draw_line(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *data,
 			line_diagonale_haut(pt1, pt2, data, color);
 	}
 }
-
-// void	draw_line(t_coordonnee_2d pt1, t_coordonnee_2d pt2, t_data *data,
-// 			int color)
-// {
-// 	int		dy;
-// 	int		dx;
-// 	int		x;
-// 	int		y;
-// 	float	a;
-
-// 	dx = ft_abs(pt2.x - pt1.x);
-// 	dy = ft_abs(pt2.y - pt1.y);
-// 	y = pt1.y;
-// 	x = pt1.x;
-// 	if (dx == 0)
-// 	{
-// 		while (y < dy)
-// 		{
-// 			my_mlx_pixel_put(data, x, y, color);
-// 			y = y + 1;
-// 		}
-// 		return ;
-// 	}
-// 	else if (dy == 0)
-// 	{
-// 		while (x < dx)
-// 		{
-// 			my_mlx_pixel_put(data, x, y, color);
-// 			x = x + 1;
-// 		}
-// 		return ;
-// 	}
-// 	a = dy / dx;
-// 	if (dx >= dy)
-// 	{
-// 		while (x < dx)
-// 		{
-// 			y = lroundf(a * (x - pt1.x) + pt1.y);
-// 			my_mlx_pixel_put(data, x, y, color);
-// 			x = x + 1;
-// 		}
-// 	}
-// 	else
-// 	{
-// 	}
-// }

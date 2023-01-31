@@ -6,7 +6,7 @@
 #    By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/31 18:39:31 by jvigny            #+#    #+#              #
-#    Updated: 2023/01/31 19:27:01 by jvigny           ###   ########.fr        #
+#    Updated: 2023/01/31 21:22:57 by jvigny           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,18 +26,20 @@ HEADERS_DIR = ./Includes/
 HEADERS = $(addprefix $(HEADERS_DIR), $(HEADERS_LIST))
 
 GNL = get_next_line/
+UTILS = utils/
 
 SRC_LIST = fdf.c parsing.c rotation.c t_coordonnee_3d.c \
 	$(GNL)get_next_line.c $(GNL)get_next_line_utils.c \
-	ft_split.c ft_atoi.c ft_strlen.c draw_line.c \
-	affichage.c add_z.c center_plan.c translation.c \
-	link_point.c free_split.c ft_move.c
+	$(UTILS)ft_split.c $(UTILS)ft_atoi.c $(UTILS)ft_strlen.c draw_line.c \
+	center_plan.c translation.c $(UTILS)utils.c init_game.c \
+	link_point.c $(UTILS)free_split.c ft_move.c
 SRC_DIR = ./src/
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
 
 	
 OBJ_DIR = ./obj/
-OBJ = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
+OBJ_LIST = $(patsubst %.c, %.o, $(SRC_LIST))
+OBJ = $(addprefix $(OBJ_DIR), $(OBJ_LIST))
 
 
 all:	$(NAME)
@@ -48,6 +50,7 @@ $(NAME):	$(MINILIBX) $(OBJ_DIR) $(OBJ)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)$(GNL)
+	mkdir -p $(OBJ_DIR)$(UTILS)
 	
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@

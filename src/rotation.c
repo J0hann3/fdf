@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:12:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/01/30 17:00:15 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/01/31 21:47:45 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	rotate_plan_x(t_coordonnee_3d *tab_3d, size_t len, double rotation)
 	{
 		y = tab_3d[i].y;
 		z = tab_3d[i].z;
-		tab_3d[i].y = y * v_cos - z * v_sin;
-		tab_3d[i].z = y * v_sin + z * v_cos;
+		tab_3d[i].y = y * v_cos + z * v_sin;
+		tab_3d[i].z = -y * v_sin + z * v_cos;
 		// printf("x: %d, y: %d		x: %d, y: %d\n", x, y , tab_3d[i].x, tab_3d[i].y);
 		i++;
 	}
