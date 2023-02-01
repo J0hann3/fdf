@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:17:53 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/01 13:52:36 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/01 16:14:00 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 int	main(int argc, char **argv)
 {
 	float			zoom;
-	t_coordonnee_3d	origine;
-	t_coordonnee_3d	repere;
 	t_game			game;
 
 	// printf(" %d %s\n", __LINE__, __FILE__);
@@ -41,19 +39,21 @@ int	main(int argc, char **argv)
 	}
 	ft_fill_tab(argv[1], game.tab, game.len_split);
 	// -----ROTATE------
-	repere.x = game.len_split / 2;
-	repere.y = game.len / game.len_split / 2;
-	repere.z = 5;
-	translation(game.tab, game.len, repere);
-	ft_print(game.tab, game.len);
+	game.repere.x = - (game.len_split / 2.0);
+	game.repere.y = - (game.len / game.len_split / 2.0);
+	game.repere.z = -5.0;
+	
+	translation(&game, game.repere);
+	
+	// rotate_plan_isometrique(&game.repere, 1);
 	rotate_plan_isometrique(game.tab, game.len);
-	// rotate_plan_z(game.tab, game.len, -(M_PI / 3));
-	zoom = center_plan(game.tab, game.len, &origine);
-	apply_zoom(&repere, 1, zoom, (t_coordonnee_3d){0, 0, 0});
-	apply_zoom(game.tab, game.len, zoom, (t_coordonnee_3d){0, 0, 0});
+	rotate_plan_z(game.tab, game.len, -(M_PI / 3));
+	
+	zoom = center_plan(game.tab, game.len, &game.repere);
+	apply_zoom(&game, zoom);
 	// ---- Draw -----
 	mlx_do_key_autorepeatoff(game.mlx);
-	link_point(game.tab, game.len_split, game.len, &game.img, 0xFF0000);
+	link_point(&game, 0xFF0000);
 	mlx_put_image_to_window(game.mlx, game.mlx_win, game.img.img, 0, 0);
 	mlx_do_key_autorepeatoff(game.mlx);
 	mlx_hook(game.mlx_win, 02, (1L<<0), key, &game);

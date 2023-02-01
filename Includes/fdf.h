@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:32:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/01 13:37:02 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/01 16:12:34 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,14 @@ typedef struct s_data
 
 typedef struct s_game
 {
+	t_data			img;
+	t_coordonnee_3d	*tab;
 	void			*mlx;
 	void			*mlx_win;
-	t_coordonnee_3d	*tab;
+	t_move			interaction;
 	size_t			len;
 	size_t			len_split;
-	t_move			interaction;
-	t_data			img;
+	t_coordonnee_3d	repere;
 }	t_game;
 
 // ------ Utils ------
@@ -99,6 +100,7 @@ size_t	ft_strlen(const char *s);
 char	**ft_split(char const *s, char c);
 void	free_split(char **res);
 char	*get_next_line(int fd);
+t_coordonnee_3d	sub(t_coordonnee_3d a, t_coordonnee_3d b);
 
 int		init_game(t_game *game);
 void	init_move(t_game *game);
@@ -107,8 +109,7 @@ void	init_move(t_game *game);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_line(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *data,
 			int color);
-void	link_point(t_coordonnee_3d *tab, size_t len_split, size_t len,
-			t_data *data, int color);
+void	link_point(t_game *game, int color);
 
 // ------ Rotate ------
 void	rotate_plan_x(t_coordonnee_3d *tab_3d, size_t len, double rotation);
@@ -131,10 +132,10 @@ void	ft_fill_tab(char *str, t_coordonnee_3d	*tab, int len_line);
 
 // ------ Zoom ------
 float	center_plan(t_coordonnee_3d *tab, size_t len, t_coordonnee_3d *origine);
-void	apply_zoom(t_coordonnee_3d *tab_3d, size_t len, float zoom, t_coordonnee_3d origine);
+void	apply_zoom(t_game *game, float zoom);
 
 // ------ Translation ------
-void	translation(t_coordonnee_3d *tab, size_t len, t_coordonnee_3d origine);
+void	translation(t_game *game, t_coordonnee_3d origine);
 
 // ------ Not use -------
 void	add_z(t_coordonnee_3d *tab, size_t len);
