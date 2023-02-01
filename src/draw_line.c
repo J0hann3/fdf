@@ -6,11 +6,19 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:50:08 by jvigny            #+#    #+#             */
-/*   Updated: 2023/01/31 20:27:41 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/01 11:27:45 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * data->octets_per_pixel);
+	*(unsigned int*)dst = color;
+}
 
 static void	line_vertical(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *data,
 			int color)

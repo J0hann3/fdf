@@ -6,10 +6,11 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:12:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/01/31 21:47:45 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/01 13:40:13 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*\*/
 #include "fdf.h"
 
 void	rotate_plan_isometrique(t_coordonnee_3d *tab_3d, size_t len)
@@ -105,3 +106,4 @@ void	rotate_plan_z(t_coordonnee_3d *tab_3d, size_t len, double rotation)
 		i++;
 	}
 }
+/**/

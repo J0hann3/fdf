@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:30:14 by jvigny            #+#    #+#             */
-/*   Updated: 2023/01/28 17:35:17 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/01 13:53:47 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	translation(t_coordonnee_3d *tab, size_t len, t_coordonnee_3d origine)
 	i = 0;
 	while (i < len)
 	{
-		tab[i].x = tab[i].x + origine.x;
-		tab[i].y = tab[i].y + origine.y;
+		tab[i].x = tab[i].x - origine.x;
+		tab[i].y = tab[i].y - origine.y;
+		tab[i].z = tab[i].z - origine.z;
 		i++;
 	}
 }

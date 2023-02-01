@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:32:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/01/31 21:22:10 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/01 13:37:02 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,15 @@
 # define KEY_ZOOM_IN 65451
 # define KEY_ZOOM_OUT 65453
 
-# define TRANSLATION 5
-# define ZOOM_IN 1.1
-# define ZOOM_OUT 0.9
+# define KEY_ROTATION_A 97
+# define KEY_ROTATION_W 119
+# define KEY_ROTATION_D 100
+# define KEY_ROTATION_S 115
+
+# define TRANSLATION 0.25
+# define ZOOM_IN 1.0001
+# define ZOOM_OUT 0.9999
+# define ROTATION 0.0001
 
 typedef struct s_coordonnee_3d
 {
@@ -60,9 +66,10 @@ typedef struct s_move
 	int	translate_down;
 	int	translate_left;
 	int	translate_right;
-	int	rotate_z;
-	int	rotate_x;
-	int	rotate_y;
+	int	rotate_a;
+	int	rotate_w;
+	int	rotate_d;
+	int	rotate_s;
 }	t_move;
 
 typedef struct s_data
@@ -93,7 +100,8 @@ char	**ft_split(char const *s, char c);
 void	free_split(char **res);
 char	*get_next_line(int fd);
 
-void	init_game(t_game *game);
+int		init_game(t_game *game);
+void	init_move(t_game *game);
 
 // ------ Draw ------
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -115,6 +123,7 @@ int		ft_translate(t_game *game, t_coordonnee_3d origine);
 int		ft_move(t_game *mlx);
 int		ft_close(t_game *mlx);
 int		ft_zoom(t_game *game, float zoom);
+int		ft_rotate(t_game *game, float angle, char plan);
 
 // ------ Parsing -----
 size_t	ft_fdflen(char *str, size_t *len_line);

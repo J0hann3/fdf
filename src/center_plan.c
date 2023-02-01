@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:03:03 by jvigny            #+#    #+#             */
-/*   Updated: 2023/01/30 11:58:59 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/01 13:54:39 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	apply_zoom(t_coordonnee_3d *tab_3d, size_t len, float zoom, t_coordonnee_3d
 	{
 		tab_3d[i].x = (tab_3d[i].x + ft_abs(origine.x)) * zoom;
 		tab_3d[i].y = (tab_3d[i].y + ft_abs(origine.y)) * zoom;
+		tab_3d[i].z = (tab_3d[i].z + ft_abs(origine.z)) * zoom;
 		i++;
 	}
 }
