@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:11:52 by jvigny            #+#    #+#             */
-/*   Updated: 2023/01/28 12:51:57 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/02 13:13:26 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_fill_tab(char *arg, t_coordonnee_3d	*tab, int len_line)
 		x = 0;
 		while (split != NULL && split[x] != NULL)
 		{
-			tab[y * len_line + x] = (t_coordonnee_3d){x, y, ft_atoi(split[x])};
+			tab[y * len_line + x] = (t_coordonnee_3d){x, y, ft_atoi(split[x]), 0};
 			x++;
 		}
 		free(str);

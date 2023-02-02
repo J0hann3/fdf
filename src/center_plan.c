@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:03:03 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/01 16:09:04 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/02 12:46:51 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ void	apply_zoom(t_game *game, float zoom)
 	game->repere.x = game->repere.x * zoom;
 	game->repere.y = game->repere.y * zoom;
 	game->repere.z = game->repere.z * zoom;
+	// game->center_rotation = game->repere;
 }
