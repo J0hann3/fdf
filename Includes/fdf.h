@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:32:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/02 13:12:16 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/02 16:50:36 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 
 # ifndef HEIGHT
 #  define HEIGHT 1000
+# endif
+
+# ifndef COLOR
+#  define COLOR 0xFF00FF
 # endif
 
 # define KEY_UP 65362
@@ -115,12 +119,14 @@ int				init_game(t_game *game, t_data *img);
 void			init_move(t_game *game, t_move *move);
 void			find_min_max(t_game *game);
 
+void			fill_color(t_game *game);
 
 // ------ Draw ------
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void			draw_line(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *data,
-			int color);
-void			link_point(t_game *game, int color);
+void			draw_line(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *data);
+void			link_point(t_game *game);
+int				degrade(int color1, int color2, int y, int d);
+
 
 // ------ Rotate ------
 void			rotate_plan_x(t_coordonnee_3d *tab_3d, size_t len, double rotation);

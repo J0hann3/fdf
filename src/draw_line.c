@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:50:08 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/01 11:27:45 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/02 17:22:08 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-static void	line_vertical(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *data,
-			int color)
+static void	line_vertical(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *data)
 {
 	int	dy;
 	int	y;
@@ -33,13 +32,14 @@ static void	line_vertical(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *data
 	while (y < dy && pt1.x >= 0 && pt1.x < WIDTH)
 	{
 		if (y >= 0 && y < HEIGHT)
-			my_mlx_pixel_put(data, pt1.x, y, color);
+		{
+			my_mlx_pixel_put(data, pt1.x, y, degrade(pt1.color, pt2.color, y, dy));
+		}
 		y = y + 1;
 	}
 }
 
-static void	line_horizontal(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *data,
-			int color)
+static void	line_horizontal(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *data)
 {
 	int	dx;
 	int	x;
@@ -51,13 +51,15 @@ static void	line_horizontal(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *da
 	while (x < dx && pt1.y >= 0 && pt1.y < HEIGHT)
 	{
 		if (x >= 0 && x < WIDTH)
-			my_mlx_pixel_put(data, x, pt1.y, color);
+		{
+			my_mlx_pixel_put(data, x, pt1.y, degrade(pt1.color, pt2.color, x, dx));
+		}
 		x = x + 1;
 	}
 }
 
 static void	line_diagonale_bas(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
-			t_data *data, int color)
+			t_data *data)
 {
 	int		dx;
 	int		dy;
@@ -83,7 +85,9 @@ static void	line_diagonale_bas(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 	while (x <= dx)
 	{
 		if ((x >= 0 && x < WIDTH) && (y >= 0 && y < HEIGHT))
-			my_mlx_pixel_put(data, x, y, color);
+		{
+			my_mlx_pixel_put(data, x, y, degrade(pt1.color, pt2.color, x, dx));
+		}
 		error = error + a;
 		if (error >= 0.5)
 		{
@@ -95,7 +99,7 @@ static void	line_diagonale_bas(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 }
 
 static void	line_diagonale_haut(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
-			t_data *data, int color)
+			t_data *data)
 {
 	int		dx;
 	int		dy;
@@ -121,7 +125,9 @@ static void	line_diagonale_haut(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 	while (y <= dy)
 	{
 		if ((x >= 0 && x < WIDTH) && (y >= 0 && y < HEIGHT))
-			my_mlx_pixel_put(data, x, y, color);
+		{
+			my_mlx_pixel_put(data, x, y, degrade(pt1.color, pt2.color, y, dy));
+		}
 		error = error + a;
 		if (error >= 0.5)
 		{
@@ -132,8 +138,7 @@ static void	line_diagonale_haut(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 	}
 }
 
-void	draw_line(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *data,
-			int color)
+void	draw_line(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *data)
 {
 	int	dx;
 	int	dy;
@@ -141,21 +146,21 @@ void	draw_line(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *data,
 	dx = ft_abs(pt2.x - pt1.x);
 	dy = ft_abs(pt2.y - pt1.y);
 	if (dy == 0)
-		line_horizontal(pt1, pt2, data, color);
+		line_horizontal(pt1, pt2, data);
 	else if (dx == 0)
-		line_vertical(pt1, pt2, data, color);
+		line_vertical(pt1, pt2, data);
 	else if (dy < dx)
 	{
 		if (pt1.x > pt2.x)
-			line_diagonale_bas(pt2, pt1, data, color);
+			line_diagonale_bas(pt2, pt1, data);
 		else
-			line_diagonale_bas(pt1, pt2, data, color);
+			line_diagonale_bas(pt1, pt2, data);
 	}
 	else
 	{
 		if (pt1.y > pt2.y)
-			line_diagonale_haut(pt2, pt1, data, color);
+			line_diagonale_haut(pt2, pt1, data);
 		else
-			line_diagonale_haut(pt1, pt2, data, color);
+			line_diagonale_haut(pt1, pt2, data);
 	}
 }
