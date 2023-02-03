@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:50:08 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/03 17:23:11 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/03 17:46:02 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,9 @@ static void	line_diagonale_bas(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 	while (x <= dx)
 	{
 		// degrade(pt1.color, pt2.color, x, dx);
-		color.red = (unsigned char)(e_color.red * (x - pt1.x));
-		color.green = (unsigned char)(e_color.green * (x - pt1.x));
-		color.blue = (unsigned char)(e_color.blue * (x - pt1.x));
+		color.red = pt1.color.red + (unsigned char)(e_color.red * (x - pt1.x));
+		color.green = pt1.color.green + (unsigned char)(e_color.green * (x - pt1.x));
+		color.blue = pt1.color.blue + (unsigned char)(e_color.blue * (x - pt1.x));
 		// printf("bas : r : %f	g : %f	b : %f\n", e_color.red, e_color.green, e_color.blue);
 		if ((x >= 0 && x < WIDTH) && (y >= 0 && y < HEIGHT))
 			my_mlx_pixel_put(data, x, y, color.color);
@@ -159,9 +159,9 @@ static void	line_diagonale_haut(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 	while (y <= dy)
 	{
 		// printf("index haut : %d\n", (int)(y - pt1.y));
-		color.red = (unsigned char)(e_color.red * (y - pt1.y));
-		color.green = (unsigned char)(e_color.green * (y - pt1.y));
-		color.blue = (unsigned char)(e_color.blue * (y - pt1.y));
+		color.red = pt1.color.red + (unsigned char)(e_color.red * (y - pt1.y));
+		color.green = pt1.color.green + (unsigned char)(e_color.green * (y - pt1.y));
+		color.blue = pt1.color.blue + (unsigned char)(e_color.blue * (y - pt1.y));
 		if ((x >= 0 && x < WIDTH) && (y >= 0 && y < HEIGHT))
 			my_mlx_pixel_put(data, x, y, color.color);
 		error = error + a;
