@@ -6,14 +6,14 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:32:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/02 16:50:36 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/03 17:22:47 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include <mlx.h>
+# include "../minilibx-linux/mlx.h"
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -58,14 +58,34 @@
 # define ZOOM_OUT_SCROLL 0.99
 # define ZOOM_IN 1.0001
 # define ZOOM_OUT 0.9999
-# define ROTATION 0.0001
+# define ROTATION 0.001
+
+typedef union u_color
+{
+	unsigned int	color;
+	struct
+	{
+		unsigned char	alpha;
+		unsigned char	red;
+		unsigned char	green;
+		unsigned char	blue;
+	};
+}	t_color;
+
+typedef struct u_color_f
+{
+	float	alpha;
+	float	red;
+	float	green;
+	float	blue;
+}	t_color_f;
 
 typedef struct s_coordonnee_3d
 {
-	float	x;
-	float	y;
-	float	z;
-	int		color;
+	float			x;
+	float			y;
+	float			z;
+	t_color			color;
 }	t_coordonnee_3d;
 
 typedef struct s_move
@@ -126,7 +146,7 @@ void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void			draw_line(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *data);
 void			link_point(t_game *game);
 int				degrade(int color1, int color2, int y, int d);
-
+t_color_f		gradient(t_color color1, t_color color2, float y1, float y2);
 
 // ------ Rotate ------
 void			rotate_plan_x(t_coordonnee_3d *tab_3d, size_t len, double rotation);

@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:17:53 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/02 17:52:24 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/03 16:32:54 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,11 @@ int	main(int argc, char **argv)
 	ft_fill_tab(argv[1], game.tab, game.len_split);
 	// -----ROTATE------
 	find_min_max(&game);
-	// ft_print(&game.min, 1);
-	// ft_print(&game.max, 1);
+	
 	game.repere.x = - ((game.max.x - game.min.x) / 2.0);
 	game.repere.y = - ((game.max.y - game.min.y) / 2.0);
 	game.repere.z = - ((game.max.z - game.min.z) / 2.0);
-	// ft_print(&game.repere, 1);
+	
 	fill_color(&game);
 	
 	translation(&game, game.repere);

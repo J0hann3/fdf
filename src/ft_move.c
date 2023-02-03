@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 15:11:16 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/02 15:24:24 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/03 15:47:56 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	ft_move(t_game *game)
 {
 	if (game->interaction->translate_up == 1)
-		ft_translate(game, (t_coordonnee_3d){0, TRANSLATION, 0, 0});
+		ft_translate(game, (t_coordonnee_3d){0, TRANSLATION, 0, (t_color){0}});
 	if (game->interaction->translate_down == 1)
-		ft_translate(game, (t_coordonnee_3d){0, -TRANSLATION, 0, 0});
+		ft_translate(game, (t_coordonnee_3d){0, -TRANSLATION, 0, (t_color){0}});
 	if (game->interaction->translate_left == 1)
-		ft_translate(game, (t_coordonnee_3d){TRANSLATION, 0, 0, 0});
+		ft_translate(game, (t_coordonnee_3d){TRANSLATION, 0, 0, (t_color){0}});
 	if (game->interaction->translate_right == 1)
-		ft_translate(game, (t_coordonnee_3d){-TRANSLATION, 0, 0, 0});
+		ft_translate(game, (t_coordonnee_3d){-TRANSLATION, 0, 0, (t_color){0}});
 	if (game->interaction->zoom_in == 1)
 		ft_zoom(game, ZOOM_IN);
 	if (game->interaction->zoom_out == 1)
