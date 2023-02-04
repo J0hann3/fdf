@@ -6,55 +6,26 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:17:53 by jvigny            #+#    #+#             */
-/*   Updated: 2023/01/31 21:46:39 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/03 17:59:16 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 /*\*/
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * data->octets_per_pixel);
-	*(unsigned int*)dst = color;
-}
-
-int	ft_close(t_game *mlx)
-{
-	mlx_destroy_image(mlx->mlx, mlx->img.img);
-	// mlx_destroy_image(mlx->mlx, mlx->background.img);
-	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
-	mlx_destroy_display(mlx->mlx);
-	free(mlx->mlx);
-	free(mlx->tab);
-	exit(EXIT_SUCCESS);
-}
-
 
 int	main(int argc, char **argv)
 {
-	float			zoom;
-	t_coordonnee_3d	origine;
-	t_game			game;
+	float	zoom;
+	t_move	interaction;
+	t_data	img;
+	t_game	game;
 
 	// printf(" %d %s\n", __LINE__, __FILE__);
 
 	// ------DRAW------
-	game.mlx = mlx_init();
-	if (game.mlx == NULL)
-		return (1);
-	game.mlx_win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "FdF");
-	if (game.mlx_win == NULL)
-	{
-		mlx_destroy_display(game.mlx);
-		free(game.mlx);
-		return (1);
-	}
-	// game.x = 0;
-	// game.y = 0;
-	init_game(&game);
+	init_game(&game, &img);
+	init_move(&game, &interaction);
 	// -------Parsing--------
 	if (argc != 2)
 	{
@@ -70,24 +41,31 @@ int	main(int argc, char **argv)
 	}
 	ft_fill_tab(argv[1], game.tab, game.len_split);
 	// -----ROTATE------
+	find_min_max(&game);
+	
+	game.repere.x = - ((game.max.x - game.min.x) / 2.0);
+	game.repere.y = - ((game.max.y - game.min.y) / 2.0);
+	game.repere.z = - ((game.max.z - game.min.z) / 2.0);
+	
+	fill_color(&game);
+	
+	translation(&game, game.repere);
+	
 	rotate_plan_isometrique(game.tab, game.len);
 	rotate_plan_z(game.tab, game.len, -(M_PI / 3));
-	zoom = center_plan(game.tab, game.len, &origine);
-	apply_zoom(game.tab, game.len, zoom, origine);
-	// ----- Image -----
-	game.img.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
-	if (game.img.img == NULL)
-		return (1);
-	game.img.addr = mlx_get_data_addr(game.img.img, &game.img.octets_per_pixel, &game.img.line_length,
-			&game.img.endian);
-	game.img.octets_per_pixel = game.img.octets_per_pixel / 8;
-	// ----- Dessin -----
-	link_point(game.tab, game.len_split, game.len, &game.img, 0xFF0000);
-	mlx_put_image_to_window(game.mlx, game.mlx_win, game.img.img, 0, 0);
-	mlx_hook(game.mlx_win, 2, 0, key, &game);
-	mlx_hook(game.mlx_win, 17, 0, ft_close, &game);
-	mlx_hook(game.mlx_win, 3, 0, key_release, &game);
-	// mlx_loop_hook(game.mlx, &ft_move, &game);
+	
+	zoom = center_plan(game.tab, game.len, &game.repere);
+	apply_zoom(&game, zoom);
+	// ---- Draw -----
+	ft_print(game.tab, game.len);
+	link_point(&game);
+	mlx_put_image_to_window(game.mlx, game.mlx_win, game.img->img, 0, 0);
+	mlx_do_key_autorepeatoff(game.mlx);
+	mlx_hook(game.mlx_win, 02, (1L<<0), key, &game);
+	mlx_hook(game.mlx_win, 03, (1L<<1), key_release, &game);
+	mlx_hook(game.mlx_win, 04, (1L<<2), mouse, &game);
+	mlx_hook(game.mlx_win, 17, (1L<<5), ft_close, &game);
+	mlx_loop_hook(game.mlx, &ft_move, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

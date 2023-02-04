@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:03:03 by jvigny            #+#    #+#             */
-/*   Updated: 2023/01/30 11:58:59 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/02 12:46:51 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,20 @@ float	center_plan(t_coordonnee_3d *tab, size_t len, t_coordonnee_3d *origine)
 	return (y);
 }
 
-void	apply_zoom(t_coordonnee_3d *tab_3d, size_t len, float zoom, t_coordonnee_3d origine)
+void	apply_zoom(t_game *game, float zoom)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < len)
+	while (i < game->len)
 	{
-		tab_3d[i].x = (tab_3d[i].x + ft_abs(origine.x)) * zoom;
-		tab_3d[i].y = (tab_3d[i].y + ft_abs(origine.y)) * zoom;
+		game->tab[i].x = game->tab[i].x * zoom;
+		game->tab[i].y = game->tab[i].y * zoom;
+		game->tab[i].z = game->tab[i].z * zoom;
 		i++;
 	}
+	game->repere.x = game->repere.x * zoom;
+	game->repere.y = game->repere.y * zoom;
+	game->repere.z = game->repere.z * zoom;
+	// game->center_rotation = game->repere;
 }

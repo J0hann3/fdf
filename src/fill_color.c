@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   translation.c                                      :+:      :+:    :+:   */
+/*   fill_color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 14:30:14 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/02 12:18:37 by jvigny           ###   ########.fr       */
+/*   Created: 2023/02/02 12:56:31 by jvigny            #+#    #+#             */
+/*   Updated: 2023/02/03 15:50:53 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	translation(t_game *game, t_coordonnee_3d origine)
+void	fill_color(t_game *game)
 {
 	size_t	i;
+	float	dist;
 
 	i = 0;
+	dist = game->max.z - game->min.z;
 	while (i < game->len)
 	{
-		game->tab[i].x = game->tab[i].x + origine.x;
-		game->tab[i].y = game->tab[i].y + origine.y;
-		game->tab[i].z = game->tab[i].z + origine.z;
+		game->tab[i].color.color = 0xFFFFFF - (((float)game->tab[i].z / (float)dist)
+				* (0xFFFFFF - COLOR));
+		// printf("Color : %d, z : %f, Dist:%f\n", game->tab[i].color, game->tab[i].z, dist);
 		i++;
 	}
-}
-
-void	translation_repere(t_game *game, t_coordonnee_3d origine)
-{
-	game->repere.x = game->repere.x + origine.x;
-	game->repere.y = game->repere.y + origine.y;
-	game->repere.z = game->repere.z + origine.z;
 }

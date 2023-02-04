@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   translation.c                                      :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 14:30:14 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/02 12:18:37 by jvigny           ###   ########.fr       */
+/*   Created: 2022/11/08 10:19:58 by jvigny            #+#    #+#             */
+/*   Updated: 2022/11/08 13:53:54 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	translation(t_game *game, t_coordonnee_3d origine)
+void	ft_bzero(void *s, size_t n)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < game->len)
+	while (i < n)
 	{
-		game->tab[i].x = game->tab[i].x + origine.x;
-		game->tab[i].y = game->tab[i].y + origine.y;
-		game->tab[i].z = game->tab[i].z + origine.z;
+		((char *)s)[i] = 0;
 		i++;
 	}
-}
-
-void	translation_repere(t_game *game, t_coordonnee_3d origine)
-{
-	game->repere.x = game->repere.x + origine.x;
-	game->repere.y = game->repere.y + origine.y;
-	game->repere.z = game->repere.z + origine.z;
 }
