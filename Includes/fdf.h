@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:32:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/04 16:37:15 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/06 13:38:45 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # endif
 
 # ifndef COLOR
-#  define COLOR 0xFF00FF
+#  define COLOR 0x00FF0000
 # endif
 
 # define KEY_UP 65362
@@ -65,19 +65,19 @@ typedef union u_color
 	unsigned int	color;
 	struct
 	{
-		unsigned char	alpha;
-		unsigned char	red;
-		unsigned char	green;
 		unsigned char	blue;
+		unsigned char	green;
+		unsigned char	red;
+		unsigned char	alpha;
 	};
 }	t_color;
 
 typedef struct u_color_f
 {
-	float	alpha;
-	float	red;
-	float	green;
 	float	blue;
+	float	green;
+	float	red;
+	float	alpha;
 }	t_color_f;
 
 typedef struct s_coordonnee_3d
@@ -109,6 +109,7 @@ typedef struct s_data
 	int		octets_per_pixel;
 	int		line_length;
 	int		endian;
+	//reste 4 octets sur la page
 }	t_data;
 
 typedef struct s_game
@@ -118,8 +119,8 @@ typedef struct s_game
 	t_move			*interaction;
 	void			*mlx;
 	void			*mlx_win;
-	size_t			len;
-	size_t			len_split;
+	unsigned int	len;
+	unsigned int	len_split;
 	t_coordonnee_3d	repere;
 	t_coordonnee_3d	min;
 	t_coordonnee_3d	max;
@@ -165,7 +166,7 @@ int				ft_zoom(t_game *game, float zoom);
 int				ft_rotate(t_game *game, float angle, char plan);
 
 // ------ Parsing -----
-size_t			ft_fdflen(char *str, size_t *len_line);
+size_t			ft_fdflen(char *str, unsigned int *len_line);
 void			ft_fill_tab(char *str, t_coordonnee_3d	*tab, int len_line);
 
 // ------ Zoom ------

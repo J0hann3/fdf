@@ -6,13 +6,13 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:11:52 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/03 15:42:37 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/06 13:38:23 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/fdf.h"
 
-size_t	ft_fdflen(char *arg, size_t *len_line)
+size_t	ft_fdflen(char *arg, unsigned int *len_line)
 {
 	int		fd;
 	char	*str;
