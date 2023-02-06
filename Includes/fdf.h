@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:32:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/06 13:38:45 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/06 18:35:58 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@
 # endif
 
 # ifndef COLOR
-#  define COLOR 0x00FF0000
+#  define COLOR 0x00FF00FF
+# endif
+
+# ifndef M_PI
+#  define M_PI 3.1415926535897932384626433832795028841
 # endif
 
 # define KEY_UP 65362
@@ -90,7 +94,7 @@ typedef struct s_coordonnee_3d
 
 typedef struct s_move
 {
-	int	zoom_in;
+	short	zoom_in;
 	int	zoom_out;
 	int	translate_up;
 	int	translate_down;
@@ -154,6 +158,7 @@ void			rotate_plan_x(t_coordonnee_3d *tab_3d, size_t len, double rotation);
 void			rotate_plan_y(t_coordonnee_3d *tab_3d, size_t len, double rotation);
 void			rotate_plan_z(t_coordonnee_3d *tab_3d, size_t len, double rotation);
 void			rotate_plan_isometrique(t_coordonnee_3d *tab_3d, size_t len);
+void			rotate_plan_military(t_coordonnee_3d *tab_3d, size_t len);
 
 // ----- Keycode -----
 int				key(int keycode, t_game *mlx);

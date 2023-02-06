@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:17:53 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/03 17:59:16 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/06 17:42:35 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,27 @@ int	main(int argc, char **argv)
 	// -----ROTATE------
 	find_min_max(&game);
 	
-	game.repere.x = - ((game.max.x - game.min.x) / 2.0);
-	game.repere.y = - ((game.max.y - game.min.y) / 2.0);
-	game.repere.z = - ((game.max.z - game.min.z) / 2.0);
+	game.repere.x = - ((game.max.x - game.min.x) / 2.);
+	game.repere.y = - ((game.max.y - game.min.y) / 2.);
+	game.repere.z = - ((game.max.z - game.min.z) / 2.);
 	
 	fill_color(&game);
 	
 	translation(&game, game.repere);
 	
-	rotate_plan_isometrique(game.tab, game.len);
-	rotate_plan_z(game.tab, game.len, -(M_PI / 3));
+	// Isometrique
+	// rotate_plan_isometrique(game.tab, game.len);
+	// rotate_plan_z(game.tab, game.len, -(M_PI / 3.0));
+
+	//Military
+	// rotate_plan_y(game.tab, game.len, -(M_PI / 3.0));
+	// rotate_plan_x(game.tab, game.len, -(M_PI / 3.0));
+	rotate_plan_military(game.tab, game.len);
+	rotate_plan_z(game.tab, game.len, -(M_PI / 3.0));
 	
 	zoom = center_plan(game.tab, game.len, &game.repere);
 	apply_zoom(&game, zoom);
 	// ---- Draw -----
-	ft_print(game.tab, game.len);
 	link_point(&game);
 	mlx_put_image_to_window(game.mlx, game.mlx_win, game.img->img, 0, 0);
 	mlx_do_key_autorepeatoff(game.mlx);
