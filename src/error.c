@@ -6,15 +6,16 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:30:13 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/07 15:01:13 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 16:27:48 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	error(t_game *mlx)
+int	error(t_game *mlx, int boolean)
 {
-	perror("Error");
+	if (boolean != 0)
+		perror("Error");
 	if (mlx->mlx != NULL)
 	{
 		if (mlx->img->img != NULL)

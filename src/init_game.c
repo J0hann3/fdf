@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 20:57:56 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/07 15:01:52 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 16:27:58 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
-		error(game);
+		error(game, 1);
 	game->mlx_win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "FdF");
 	if (game->mlx_win == NULL)
-		error(game);
+		error(game, 1);
 	game->img->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (game->img->img == NULL)
-		error(game);
+		error(game, 1);
 	game->img->addr = mlx_get_data_addr(game->img->img,
 			&game->img->octets_per_pixel, &game->img->line_length,
 			&game->img->endian);

@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:17:53 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/07 15:37:35 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 17:07:18 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	main(int argc, char **argv)
 	t_data	img;
 	t_game	game;
 
-	// printf(" %d %s\n", __LINE__, __FILE__);
 	init_null_game(&game, &img);
 	init_game(&game);
 	init_move(&game, &interaction);
@@ -65,3 +64,6 @@ int	main(int argc, char **argv)
 	// draw_line((t_coordonnee_2d){700, 700}, (t_coordonnee_2d){800, 400}, &img, 0xBBFF);
 	// printf("--------------------------\n");
 	// draw_line((t_coordonnee_2d){0, 51}, (t_coordonnee_2d){501, 45}, &img, 0xff00);
+
+	// printf(" %d %s\n", __LINE__, __FILE__);
+	
