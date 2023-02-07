@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:04:11 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/07 15:28:05 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 16:29:25 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_coordonnee_3d	*ft_strdup(const t_coordonnee_3d *s, unsigned int len,
 	i = 0;
 	res = malloc(sizeof(t_coordonnee_3d) * len);
 	if (res == NULL)
-		error(game);
+		error(game, 1);
 	while (i < len)
 	{
 		res[i] = s[i];

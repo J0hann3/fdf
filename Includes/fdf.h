@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:32:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/07 16:15:30 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 16:27:21 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ char			*get_next_line(int fd);
 t_coordonnee_3d	sub(t_coordonnee_3d a, t_coordonnee_3d b);
 t_coordonnee_3d	*ft_strdup(const t_coordonnee_3d *s, unsigned int len,
 					t_game *game);
-int				error(t_game *mlx);
+int				error(t_game *mlx, int boolean);
 
 // ------ Init ------
 void			init_null_game(t_game *game, t_data *img);
