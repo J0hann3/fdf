@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:12:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/07 15:40:59 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 16:15:08 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	rotate_plan_cabinet(t_coordonnee_3d *tab_3d, t_coordonnee_3d *tab_const,
 	double			alpha_cos;
 
 	i = 0;
-	alpha_cos = cos(- atan(2.0));
-	alpha_sin = sin(- atan(2.0));
+	alpha_cos = cos(-atan(2.0));
+	alpha_sin = sin(-atan(2.0));
 	if (tab_const != NULL)
 		tmp = tab_const;
 	else
@@ -73,6 +73,7 @@ void	rotate_plan_cabinet(t_coordonnee_3d *tab_3d, t_coordonnee_3d *tab_const,
 		z = tmp[i].z;
 		tab_3d[i].x = x + (1. / 2.) * alpha_cos * z;
 		tab_3d[i].y = y + (1. / 2.) * alpha_sin * z;
+		tab_3d[i].z = z;
 		i++;
 	}
 }

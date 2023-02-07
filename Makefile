@@ -6,14 +6,14 @@
 #    By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/31 18:39:31 by jvigny            #+#    #+#              #
-#    Updated: 2023/02/07 14:30:45 by jvigny           ###   ########.fr        #
+#    Updated: 2023/02/07 15:50:48 by jvigny           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
 CC = cc
-CFLAGS =  -Wall -Werror -Wextra -g3 -O3
+CFLAGS =  -Wall -Werror -Wextra -g3
 LFLAGS = -lmlx -lXext -lX11 -lm -L$(MINILIBX_DIR)
 INCLUDES = -I$(MINILIBX_HEADERS) -I$(HEADERS_DIR)
 
