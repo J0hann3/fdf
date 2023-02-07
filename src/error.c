@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 10:19:58 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/07 15:27:08 by jvigny           ###   ########.fr       */
+/*   Created: 2023/02/07 14:30:13 by jvigny            #+#    #+#             */
+/*   Updated: 2023/02/07 15:01:13 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-void	ft_bzero(void *s, unsigned int n)
+int	error(t_game *mlx)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (i < n)
+	perror("Error");
+	if (mlx->mlx != NULL)
 	{
-		((char *)s)[i] = 0;
-		i++;
+		if (mlx->img->img != NULL)
+			mlx_destroy_image(mlx->mlx, mlx->img->img);
+		if (mlx->mlx_win != NULL)
+			mlx_destroy_window(mlx->mlx, mlx->mlx_win);
+		mlx_do_key_autorepeaton(mlx->mlx);
+		mlx_destroy_display(mlx->mlx);
 	}
+	free(mlx->mlx);
+	free(mlx->tab);
+	free(mlx->tab_const);
+	exit(EXIT_FAILURE);
 }

@@ -6,30 +6,37 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:11:52 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/06 13:38:23 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 15:27:08 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/fdf.h"
 
-size_t	ft_fdflen(char *arg, unsigned int *len_line)
+unsigned int	ft_fdflen(char *arg, unsigned int *len_line, t_game *game)
 {
 	int		fd;
 	char	*str;
 	char	**split;
-	size_t	len;
-	size_t	len_split;
+	unsigned int	len;
+	unsigned int	len_split;
 
 	fd = open(arg, O_RDONLY);
+	if (fd == -1)
+		error(game);
 	len = 0;
 	len_split = 0;
 	str = get_next_line(fd);
+	if (str == NULL)
+	{
+		close(fd);
+		error(game);		//not of the error it will print
+	}
 	split = ft_split(str, ' ');
 	if (split == NULL)
 	{
 		free(str);
 		close(fd);
-		return (0);
+		error(game);		//not of the error it will print
 	}
 	while (split[len_split] != NULL)
 		len_split++;
@@ -45,15 +52,17 @@ size_t	ft_fdflen(char *arg, unsigned int *len_line)
 	return (len * len_split);
 }
 
-void	ft_fill_tab(char *arg, t_coordonnee_3d	*tab, int len_line)
+void	ft_fill_tab(char *arg, t_coordonnee_3d	*tab, int len_line, t_game *game)
 {
 	int		fd;
 	char	*str;
 	char	**split;
-	size_t	y;
-	size_t	x;
+	unsigned int	y;
+	unsigned int	x;
 
 	fd = open(arg, O_RDONLY);
+	if (fd == -1)
+		error(game);
 	str = get_next_line(fd);
 	y = 0;
 	while (str != NULL)
@@ -71,4 +80,19 @@ void	ft_fill_tab(char *arg, t_coordonnee_3d	*tab, int len_line)
 		y++;
 	}
 	close(fd);
+}
+
+int	parsing(int argc, char **argv, t_game *game)
+{
+	if (argc != 2)
+	{
+		write(1, "Nombre d'arguments incorrect\n", 29);
+		return (-1);
+	}
+	game->len = ft_fdflen(argv[1], &game->len_split, game);	// return the error
+	game->tab = malloc(sizeof(t_coordonnee_3d) * game->len);
+	if (game->tab == NULL)
+		error(game);
+	ft_fill_tab(argv[1], game->tab, game->len_split, game);	// return the error
+	return (1);
 }

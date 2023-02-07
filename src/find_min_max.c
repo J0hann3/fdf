@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:06:03 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/02 13:11:57 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 15:27:08 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	find_min_max(t_game *game)
 {
-	size_t	i;
+	unsigned int	i;
 
 	i = 0;
 	game->min.x = game->tab[0].x;

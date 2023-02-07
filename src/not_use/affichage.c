@@ -6,15 +6,15 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 12:32:31 by jvigny            #+#    #+#             */
-/*   Updated: 2023/01/31 20:21:46 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 15:27:08 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_printf_point_of_tab(t_coordonnee_3d *tab_3d, size_t len, t_data *data)
+void	ft_printf_point_of_tab(t_coordonnee_3d *tab_3d, unsigned int len, t_data *data)
 {
-	size_t	i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < len)

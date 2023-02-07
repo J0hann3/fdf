@@ -6,21 +6,21 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:03:03 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/02 12:46:51 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 15:34:53 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-float	center_plan(t_coordonnee_3d *tab, size_t len, t_coordonnee_3d *origine)
+float	center_plan(t_coordonnee_3d *tab, unsigned int len, t_coordonnee_3d *origine)
 {
-	size_t	i;
-	float		min_x;
-	float		max_x;
-	float		min_y;
-	float		max_y;
-	float		y;
-	float		x;
+	unsigned int	i;
+	float			min_x;
+	float			max_x;
+	float			min_y;
+	float			max_y;
+	float			y;
+	float			x;
 
 	i = 0;
 	min_x = tab[i].x;
@@ -43,7 +43,6 @@ float	center_plan(t_coordonnee_3d *tab, size_t len, t_coordonnee_3d *origine)
 	origine->y = min_y;
 	x = WIDTH / (max_x - min_x);
 	y = HEIGHT / (max_y - min_y);
-	// printf("min : %d	max : %d	X : %d	Y : %d min : %d	max : %d\n",min_x, max_x, x, y, min_y, max_y);
 	if (x < y)
 		return (x);
 	return (y);
@@ -51,7 +50,7 @@ float	center_plan(t_coordonnee_3d *tab, size_t len, t_coordonnee_3d *origine)
 
 void	apply_zoom(t_game *game, float zoom)
 {
-	size_t	i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < game->len)
@@ -64,5 +63,4 @@ void	apply_zoom(t_game *game, float zoom)
 	game->repere.x = game->repere.x * zoom;
 	game->repere.y = game->repere.y * zoom;
 	game->repere.z = game->repere.z * zoom;
-	// game->center_rotation = game->repere;
 }

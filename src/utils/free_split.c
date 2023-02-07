@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 12:49:18 by jvigny            #+#    #+#             */
-/*   Updated: 2023/01/28 12:54:40 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 15:27:08 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_split(char **res)
 {
-	size_t	i;
+	unsigned int	i;
 
 	i = 0;
 	while (res[i] != NULL)

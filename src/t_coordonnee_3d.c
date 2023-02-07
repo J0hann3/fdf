@@ -6,15 +6,15 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 17:01:58 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/03 15:45:00 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 15:36:03 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_print(t_coordonnee_3d *tab, size_t len)
+void	ft_print(t_coordonnee_3d *tab, unsigned int len)
 {
-	size_t	i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < len)
@@ -31,7 +31,6 @@ t_coordonnee_3d	sub(t_coordonnee_3d a, t_coordonnee_3d b)
 
 	new.x = a.x - b.x;
 	new.y = a.y - b.y;
-	// new.z = a.z - b.z;
 	new.color = a.color;
 	return (new);
 }

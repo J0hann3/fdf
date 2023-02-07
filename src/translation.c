@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:30:14 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/02 12:18:37 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 15:27:08 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	translation(t_game *game, t_coordonnee_3d origine)
 {
-	size_t	i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < game->len)
