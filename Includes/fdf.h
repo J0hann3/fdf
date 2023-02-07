@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:32:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/06 18:35:58 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 13:05:43 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,13 @@
 # define KEY_SCROLL_UP 4
 # define KEY_SCROLL_DOWN 5
 
-
 # define KEY_ROTATION_A 97
 # define KEY_ROTATION_W 119
 # define KEY_ROTATION_D 100
 # define KEY_ROTATION_S 115
+
+# define KEY_I 105
+# define KEY_P 112
 
 # define TRANSLATION 0.25
 # define ZOOM_IN_SCROLL 1.01
@@ -120,6 +122,7 @@ typedef struct s_game
 {
 	t_data			*img;
 	t_coordonnee_3d	*tab;
+	t_coordonnee_3d	*tab_const;
 	t_move			*interaction;
 	void			*mlx;
 	void			*mlx_win;
@@ -138,6 +141,8 @@ char			**ft_split(char const *s, char c);
 void			free_split(char **res);
 char			*get_next_line(int fd);
 t_coordonnee_3d	sub(t_coordonnee_3d a, t_coordonnee_3d b);
+t_coordonnee_3d	*ft_strdup(const t_coordonnee_3d *s, unsigned int len);
+
 
 // ------ Init ------
 int				init_game(t_game *game, t_data *img);
@@ -150,15 +155,14 @@ void			fill_color(t_game *game);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void			draw_line(t_coordonnee_3d pt1, t_coordonnee_3d pt2, t_data *data);
 void			link_point(t_game *game);
-int				degrade(int color1, int color2, int y, int d);
 t_color_f		gradient(t_color color1, t_color color2, float y1, float y2);
 
 // ------ Rotate ------
 void			rotate_plan_x(t_coordonnee_3d *tab_3d, size_t len, double rotation);
 void			rotate_plan_y(t_coordonnee_3d *tab_3d, size_t len, double rotation);
 void			rotate_plan_z(t_coordonnee_3d *tab_3d, size_t len, double rotation);
-void			rotate_plan_isometrique(t_coordonnee_3d *tab_3d, size_t len);
-void			rotate_plan_military(t_coordonnee_3d *tab_3d, size_t len);
+void			rotate_plan_isometrique(t_coordonnee_3d *tab_3d, t_coordonnee_3d *tab_const, size_t len);
+void			rotate_plan_cabinet(t_coordonnee_3d *tab_3d, t_coordonnee_3d *tab_const, size_t len);
 
 // ----- Keycode -----
 int				key(int keycode, t_game *mlx);
@@ -169,6 +173,9 @@ int				ft_move(t_game *mlx);
 int				ft_close(t_game *mlx);
 int				ft_zoom(t_game *game, float zoom);
 int				ft_rotate(t_game *game, float angle, char plan);
+int				ft_projection_iso(t_game *game);
+int				ft_projection_cabinet(t_game *game);
+
 
 // ------ Parsing -----
 size_t			ft_fdflen(char *str, unsigned int *len_line);

@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:17:53 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/06 17:42:35 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 13:13:25 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,15 @@ int	main(int argc, char **argv)
 	ft_fill_tab(argv[1], game.tab, game.len_split);
 	// -----ROTATE------
 	find_min_max(&game);
-	
 	game.repere.x = - ((game.max.x - game.min.x) / 2.);
 	game.repere.y = - ((game.max.y - game.min.y) / 2.);
 	game.repere.z = - ((game.max.z - game.min.z) / 2.);
-	
 	fill_color(&game);
-	
 	translation(&game, game.repere);
-	
+	game.tab_const = ft_strdup(game.tab, game.len);
 	// Isometrique
-	// rotate_plan_isometrique(game.tab, game.len);
-	// rotate_plan_z(game.tab, game.len, -(M_PI / 3.0));
-
-	//Military
-	// rotate_plan_y(game.tab, game.len, -(M_PI / 3.0));
-	// rotate_plan_x(game.tab, game.len, -(M_PI / 3.0));
-	rotate_plan_military(game.tab, game.len);
+	rotate_plan_isometrique(game.tab, NULL, game.len);
 	rotate_plan_z(game.tab, game.len, -(M_PI / 3.0));
-	
 	zoom = center_plan(game.tab, game.len, &game.repere);
 	apply_zoom(&game, zoom);
 	// ---- Draw -----

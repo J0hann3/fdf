@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 15:11:16 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/03 15:47:56 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 12:58:23 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ int	ft_close(t_game *mlx)
 	mlx_destroy_display(mlx->mlx);
 	free(mlx->mlx);
 	free(mlx->tab);
+	free(mlx->tab_const);
 	exit(EXIT_SUCCESS);
 }

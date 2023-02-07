@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 12:49:46 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/02 14:06:10 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 12:39:28 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ int	key(int keycode, t_game *game)
 	// printf("keycode press: %d\n", keycode);
 	if (keycode == KEY_ECHAP)
 		ft_close(game);
+	if (keycode == KEY_I)
+		ft_projection_iso(game);
+	if (keycode == KEY_P)
+		ft_projection_cabinet(game);
 	else if (keycode == KEY_UP)
 		game->interaction->translate_up = 1;
 	else if (keycode == KEY_DOWN)
