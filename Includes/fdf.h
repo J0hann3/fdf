@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:32:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/08 11:25:25 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 17:28:21 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,7 @@ void			rotate_plan_cabinet(t_coordonnee_3d *tab_3d,
 					t_coordonnee_3d *tab_const, unsigned int len);
 
 // ----- Keycode -----
+void			ft_hook(t_game *game);
 int				key(int keycode, t_game *mlx);
 int				key_release(int keycode, t_game *game);
 int				mouse(int keycode, int x, int y, t_game *game);

@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:17:53 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/08 11:34:58 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 17:33:49 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ int	main(int argc, char **argv)
 	game.tab_const = ft_strdup(game.tab, game.len, &game);
 	ft_projection_iso(&game);
 	mlx_do_key_autorepeatoff(game.mlx);
-	mlx_hook(game.mlx_win, 02, (1L << 0), key, &game);
-	mlx_hook(game.mlx_win, 03, (1L << 1), key_release, &game);
-	mlx_hook(game.mlx_win, 04, (1L << 2), mouse, &game);
-	mlx_hook(game.mlx_win, 17, (1L << 5), ft_close, &game);
+	ft_hook(&game);
 	mlx_loop_hook(game.mlx, &ft_move, &game);
 	mlx_loop(game.mlx);
 	return (0);

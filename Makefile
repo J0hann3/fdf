@@ -6,7 +6,7 @@
 #    By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/31 18:39:31 by jvigny            #+#    #+#              #
-#    Updated: 2023/02/08 11:43:54 by jvigny           ###   ########.fr        #
+#    Updated: 2023/02/08 17:28:31 by jvigny           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRC_LIST = fdf.c parsing.c rotation.c t_coordonnee_3d.c \
 	center_plan.c translation.c $(UTILS)utils.c init_game.c \
 	link_point.c $(UTILS)free_split.c ft_move.c find_min_max.c key.c \
 	fill_color.c color.c $(UTILS)ft_strdup.c projection.c error.c \
-	put_pixel.c
+	put_pixel.c hook.c
 SRC_DIR = ./src/
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
 
