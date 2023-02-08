@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:11:52 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/08 19:13:36 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 19:50:17 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,18 @@ unsigned int	ft_fdflen(char *arg, t_game *game)
 	return (len * game->len_split);
 }
 
-// static void	fill_line(char **split,t_game *game)
-// {
-	
-// }
+static void	fill_line(char **split, t_game *game, unsigned int y)
+{
+	unsigned int	x;
+
+	x = 0;
+	while (split != NULL && split[x] != NULL)
+	{
+		game->tab[y * game->len_split + x] = (t_coordonnee_3d){x, y,
+			ft_atoi(split[x]), (t_color){0}};
+		++x;
+	}
+}
 
 void	ft_fill_tab(char *arg, t_game *game)
 {
@@ -65,8 +73,6 @@ void	ft_fill_tab(char *arg, t_game *game)
 	char			*str;
 	char			**split;
 	unsigned int	y;
-	unsigned int	x;
-	x = 0;
 
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
@@ -76,37 +82,11 @@ void	ft_fill_tab(char *arg, t_game *game)
 	while (str != NULL)
 	{
 		split = ft_split(str, ' ');
-		while (split != NULL && split[x] != NULL)
-		{
-			game->tab[y * game->len_split + x] = (t_coordonnee_3d){x, y,
-				ft_atoi(split[x]), (t_color){0}};
-			++x;
-		}
+		fill_line(split, game, y);
 		free(str);
 		free_split(split);
 		str = get_next_line(fd);
 		++y;
-	}
-	close(fd);
-}
-
-void	test_error(char *path, t_game *game)
-{
-	int		fd;
-	char	str[1];
-
-	fd = open(path, O_DIRECTORY);
-	if (fd >= 0)
-	{
-		write(2, "Error: Try to open a directory not a file\n", 42);
-		close(fd);
-		error(game, 0);
-	}
-	fd = open(path, O_RDONLY);
-	if (fd != -1 && read(fd, str, 1) == 0)
-	{
-		close(fd);
-		ft_close(game);
 	}
 	close(fd);
 }

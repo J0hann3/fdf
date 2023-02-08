@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:12:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/08 11:32:21 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 20:02:57 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,12 @@ void	rotate_plan_isometrique(t_coordonnee_3d *tab_3d,
 	unsigned int	i;
 	t_coordonnee_3d	*tmp;
 	t_coordonnee_3d	pt;
-	double			alpha_sin;
-	double			alpha_cos;
-	double			beta_sin;
-	double			beta_cos;
+	t_trigo			alpha;
+	t_trigo			beta;
 
 	i = 0;
-	alpha_cos = cos(-asin(tan(M_PI / 6.0)));
-	alpha_sin = sin(-asin(tan(M_PI / 6.0)));
-	beta_cos = cos(-M_PI_4);
-	beta_sin = sin(-M_PI_4);
+	alpha = fill_trigo(-asin(tan(M_PI / 6.0)));
+	beta = fill_trigo(-M_PI_4);
 	if (tab_const != NULL)
 		tmp = tab_const;
 	else
@@ -37,12 +33,12 @@ void	rotate_plan_isometrique(t_coordonnee_3d *tab_3d,
 		pt.x = tmp[i].x;
 		pt.y = tmp[i].y;
 		pt.z = tmp[i].z;
-		tab_3d[i].x = pt.x * beta_cos - pt.z * beta_sin;
-		tab_3d[i].y = pt.x * alpha_sin * beta_sin + pt.y * alpha_cos + pt.z
-			* alpha_sin * beta_cos;
-		tab_3d[i].z = pt.x * alpha_cos * beta_sin - pt.y * alpha_sin + pt.z
-			* alpha_cos * beta_cos;
-		i++;
+		tab_3d[i].x = pt.x * beta.cos - pt.z * beta.sin;
+		tab_3d[i].y = pt.x * alpha.sin * beta.sin + pt.y * alpha.cos + pt.z
+			* alpha.sin * beta.cos;
+		tab_3d[i].z = pt.x * alpha.cos * beta.sin - pt.y * alpha.sin + pt.z
+			* alpha.cos * beta.cos;
+		++i;
 	}
 }
 

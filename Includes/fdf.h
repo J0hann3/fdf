@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:32:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/08 17:28:21 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 20:01:08 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@
 # define ZOOM_IN 1.0001
 # define ZOOM_OUT 0.9999
 # define ROTATION 0.001
+
+typedef struct s_trigo
+{
+	double	sin;
+	double	cos;
+}	t_trigo;
 
 typedef union u_color
 {
@@ -143,6 +149,7 @@ t_coordonnee_3d	sub(t_coordonnee_3d a, t_coordonnee_3d b);
 t_coordonnee_3d	*ft_strdup(const t_coordonnee_3d *s, unsigned int len,
 					t_game *game);
 int				error(t_game *mlx, int boolean);
+t_trigo			fill_trigo(double angle);
 
 // ------ Init ------
 void			init_null_game(t_game *game, t_data *img);
@@ -158,6 +165,7 @@ void			draw_line(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 					t_data *data);
 void			link_point(t_game *game);
 t_color_f		gradient(t_color color1, t_color color2, float y1, float y2);
+int				c_color(t_color color1, t_color_f gradient, int x, int x1);
 
 // ------ Rotate ------
 void			rotate_plan_x(t_coordonnee_3d *tab_3d, unsigned int len,
@@ -185,9 +193,9 @@ int				ft_projection_iso(t_game *game);
 int				ft_projection_cabinet(t_game *game);
 
 // ------ Parsing -----
-unsigned int	ft_fdflen(char *str, unsigned int *len_line, t_game *game);
-void			ft_fill_tab(char *str, t_coordonnee_3d	*tab, int len_line,
-					t_game *game);
+unsigned int	ft_fdflen(char *str, t_game *game);
+void			ft_fill_tab(char *str, t_game *game);
+void			test_error(char *path, t_game *game);
 int				parsing(int argc, char **argv, t_game *game);
 
 // ------ Zoom ------
