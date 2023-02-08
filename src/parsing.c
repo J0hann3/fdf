@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:11:52 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/07 17:06:47 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 11:12:02 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ unsigned int	ft_fdflen(char *arg, unsigned int *len_line, t_game *game)
 	if (str == NULL)
 	{
 		close(fd);
-		error(game, 0);		//not of the error it will print
+		error(game, 0);		//exit failure if file empty
 	}
 	split = ft_split(str, ' ');
 	if (split == NULL)
 	{
 		free(str);
 		close(fd);
-		error(game, 0);		//not of the error it will print
+		error(game, 0);
 	}
 	while (split[len_split] != NULL)
 		len_split++;
@@ -84,27 +84,35 @@ void	ft_fill_tab(char *arg, t_coordonnee_3d	*tab, int len_line,
 	close(fd);
 }
 
-// void	test_error(char *path, t_game *game)
-// {
-// 	int	fd;
+void	test_error(char *path, t_game *game)
+{
+	int		fd;
+	char	str[1];
 
-// 	fd = open(path, O_DIRECTORY);
-// 	if (fd >= 0)
-// 	{
-// 		printf("%s\n", strerror(50));
-// 		close(fd);
-// 		error(game, 0);
-// 	}
-// }
+	fd = open(path, O_DIRECTORY);
+	if (fd >= 0)
+	{
+		write(2, "Error: Try to open a directory not a file\n", 42);
+		close(fd);
+		error(game, 0);
+	}
+	fd = open(path, O_RDONLY);
+	if (fd != -1 && read(fd, str, 1) == 0)
+	{
+		close(fd);
+		ft_close(game);
+	}
+	close(fd);
+}
 
 int	parsing(int argc, char **argv, t_game *game)
 {
 	if (argc != 2)
 	{
-		write(2, "Nombre d'arguments incorrect\n", 29);
+		write(2, "Error: Incorrect number of arguments\n", 37);
 		error(game, 0);
 	}
-	// test_error(argv[1], game);
+	test_error(argv[1], game);
 	game->len = ft_fdflen(argv[1], &game->len_split, game);
 	game->tab = malloc(sizeof(t_coordonnee_3d) * game->len);
 	if (game->tab == NULL)
