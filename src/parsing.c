@@ -6,38 +6,17 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:11:52 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/08 11:12:02 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 19:13:36 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/fdf.h"
 
-unsigned int	ft_fdflen(char *arg, unsigned int *len_line, t_game *game)
+static unsigned int	ft_len(char **split, char *str, unsigned int *len, int fd)
 {
-	int				fd;
-	char			*str;
-	char			**split;
-	unsigned int	len;
 	unsigned int	len_split;
 
-	fd = open(arg, O_RDONLY);
-	if (fd == -1)
-		error(game, 1);
-	len = 0;
 	len_split = 0;
-	str = get_next_line(fd);
-	if (str == NULL)
-	{
-		close(fd);
-		error(game, 0);		//exit failure if file empty
-	}
-	split = ft_split(str, ' ');
-	if (split == NULL)
-	{
-		free(str);
-		close(fd);
-		error(game, 0);
-	}
 	while (split[len_split] != NULL)
 		len_split++;
 	free_split(split);
@@ -45,21 +24,49 @@ unsigned int	ft_fdflen(char *arg, unsigned int *len_line, t_game *game)
 	{
 		free(str);
 		str = get_next_line(fd);
-		len++;
+		*len = (*len) + 1;
 	}
-	close(fd);
-	*len_line = len_split;
-	return (len * len_split);
+	return (len_split);
 }
 
-void	ft_fill_tab(char *arg, t_coordonnee_3d	*tab, int len_line,
-		t_game *game)
+unsigned int	ft_fdflen(char *arg, t_game *game)
+{
+	int				fd;
+	char			*str;
+	char			**split;
+	unsigned int	len;
+
+	fd = open(arg, O_RDONLY);
+	if (fd == -1)
+		error(game, 1);
+	len = 0;
+	str = get_next_line(fd);
+	if (str == NULL)
+		error(game, close(fd));
+	split = ft_split(str, ' ');
+	if (split == NULL)
+	{
+		free(str);
+		error(game, close(fd));
+	}
+	game->len_split = ft_len(split, str, &len, fd);
+	close(fd);
+	return (len * game->len_split);
+}
+
+// static void	fill_line(char **split,t_game *game)
+// {
+	
+// }
+
+void	ft_fill_tab(char *arg, t_game *game)
 {
 	int				fd;
 	char			*str;
 	char			**split;
 	unsigned int	y;
 	unsigned int	x;
+	x = 0;
 
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
@@ -69,17 +76,16 @@ void	ft_fill_tab(char *arg, t_coordonnee_3d	*tab, int len_line,
 	while (str != NULL)
 	{
 		split = ft_split(str, ' ');
-		x = 0;
 		while (split != NULL && split[x] != NULL)
 		{
-			tab[y * len_line + x] = (t_coordonnee_3d){x, y, ft_atoi(split[x]),
-				(t_color){0}};
-			x++;
+			game->tab[y * game->len_split + x] = (t_coordonnee_3d){x, y,
+				ft_atoi(split[x]), (t_color){0}};
+			++x;
 		}
 		free(str);
 		free_split(split);
 		str = get_next_line(fd);
-		y++;
+		++y;
 	}
 	close(fd);
 }
@@ -113,10 +119,10 @@ int	parsing(int argc, char **argv, t_game *game)
 		error(game, 0);
 	}
 	test_error(argv[1], game);
-	game->len = ft_fdflen(argv[1], &game->len_split, game);
+	game->len = ft_fdflen(argv[1], game);
 	game->tab = malloc(sizeof(t_coordonnee_3d) * game->len);
 	if (game->tab == NULL)
 		error(game, 1);
-	ft_fill_tab(argv[1], game->tab, game->len_split, game);
+	ft_fill_tab(argv[1], game);
 	return (1);
 }

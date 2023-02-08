@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 12:49:46 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/08 11:26:23 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 18:31:02 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ int	key_release(int keycode, t_game *game)
 	return (1);
 }
 
+static void	key1(int keycode, t_game *game)
+{
+	if (keycode == KEY_ROTATION_D)
+		game->interaction->rotate_d = 1;
+	else if (keycode == KEY_ROTATION_S)
+		game->interaction->rotate_s = 1;
+}
+
 int	key(int keycode, t_game *game)
 {
 	if (keycode == KEY_ECHAP)
@@ -61,10 +69,7 @@ int	key(int keycode, t_game *game)
 		game->interaction->rotate_a = 1;
 	else if (keycode == KEY_ROTATION_W)
 		game->interaction->rotate_w = 1;
-	else if (keycode == KEY_ROTATION_D)
-		game->interaction->rotate_d = 1;
-	else if (keycode == KEY_ROTATION_S)
-		game->interaction->rotate_s = 1;
+	key1(keycode, game);
 	return (1);
 }
 

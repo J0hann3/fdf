@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:50:08 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/08 11:44:52 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 18:28:07 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	line_vertical(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 {
 	int			dy;
 	int			y;
-	t_color		color;
 	t_color_f	e_color;
 
 	y = pt2.y;
@@ -27,14 +26,9 @@ static void	line_vertical(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 	e_color = gradient(pt1.color, pt2.color, pt1.y, pt2.y);
 	while (y < dy && pt1.x >= 0 && pt1.x < WIDTH)
 	{
-		color.red = pt1.color.red + (int)(e_color.red * (y - pt1.y)) & 0xFF;
-		color.green = pt1.color.green + (int)(e_color.green * (y - pt1.y))
-			& 0xFF;
-		color.blue = pt1.color.blue +(int)(e_color.blue * (y - pt1.y)) & 0xFF;
 		if (y >= 0 && y < HEIGHT)
-		{
-			my_mlx_pixel_put(data, pt1.x, y, color.color);
-		}
+			my_mlx_pixel_put(data, pt1.x, y, c_color(pt1.color, e_color, y,
+					pt1.y));
 		y = y + 1;
 	}
 }
@@ -44,7 +38,6 @@ static void	line_horizontal(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 {
 	int			dx;
 	int			x;
-	t_color		color;
 	t_color_f	e_color;
 
 	x = pt2.x;
@@ -54,14 +47,9 @@ static void	line_horizontal(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 	e_color = gradient(pt1.color, pt2.color, pt1.x, pt2.x);
 	while (x < dx && pt1.y >= 0 && pt1.y < HEIGHT)
 	{
-		color.red = pt1.color.red + (int)(e_color.red * (x - pt1.x)) & 0xFF;
-		color.green = pt1.color.green + (int)(e_color.green * (x - pt1.x))
-			& 0xFF;
-		color.blue = pt1.color.blue + (int)(e_color.blue * (x - pt1.x)) & 0xFF;
 		if (x >= 0 && x < WIDTH)
-		{
-			my_mlx_pixel_put(data, x, pt1.y, color.color);
-		}
+			my_mlx_pixel_put(data, x, pt1.y, c_color(pt1.color, e_color, x,
+					pt1.x));
 		x = x + 1;
 	}
 }
@@ -76,7 +64,6 @@ static void	line_diagonale_bas(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 	int			add;
 	double		a;
 	double		error;
-	t_color		color;
 	t_color_f	e_color;
 
 	x = pt1.x;
@@ -84,7 +71,6 @@ static void	line_diagonale_bas(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 	dx = pt2.x - pt1.x;
 	dy = pt2.y - pt1.y;
 	e_color = gradient(pt1.color, pt2.color, pt1.x, pt2.x);
-	color.color = pt1.color.color;
 	add = 1;
 	if (dy < 0)
 	{
@@ -96,13 +82,8 @@ static void	line_diagonale_bas(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 	error = 0;
 	while (x <= dx)
 	{
-		color.alpha = 0;
-		color.red = pt1.color.red + (int)(e_color.red * (x - pt1.x)) & 0xFF;
-		color.green = pt1.color.green + (int)(e_color.green * (x - pt1.x))
-			& 0xFF;
-		color.blue = pt1.color.blue + (int)(e_color.blue * (x - pt1.x)) & 0xFF;
 		if ((x >= 0 && x < WIDTH) && (y >= 0 && y < HEIGHT))
-			my_mlx_pixel_put(data, x, y, color.color);
+			my_mlx_pixel_put(data, x, y, c_color(pt1.color, e_color, x, pt1.x));
 		error = error + a;
 		if (error >= 0.5)
 		{
@@ -123,7 +104,6 @@ static void	line_diagonale_haut(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 	int			add;
 	double		a;
 	double		error;
-	t_color		color;
 	t_color_f	e_color;
 
 	e_color = gradient(pt1.color, pt2.color, pt1.y, pt2.y);
@@ -142,12 +122,8 @@ static void	line_diagonale_haut(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 	error = 0;
 	while (y <= dy)
 	{
-		color.red = pt1.color.red + (int)(e_color.red * (y - pt1.y)) & 0xFF;
-		color.green = pt1.color.green + (int)(e_color.green * (y - pt1.y))
-			& 0xFF;
-		color.blue = pt1.color.blue + (int)(e_color.blue * (y - pt1.y)) & 0xFF;
 		if ((x >= 0 && x < WIDTH) && (y >= 0 && y < HEIGHT))
-			my_mlx_pixel_put(data, x, y, color.color);
+			my_mlx_pixel_put(data, x, y, c_color(pt1.color, e_color, y, pt1.y));
 		error = error + a;
 		if (error >= 0.5)
 		{
