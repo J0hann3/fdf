@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 12:49:46 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/07 12:39:28 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 11:26:23 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	key_release(int keycode, t_game *game)
 {
-	// printf("keycode release: %d\n", keycode);
 	if (keycode == KEY_UP)
 		game->interaction->translate_up = 0;
 	else if (keycode == KEY_DOWN)
@@ -40,7 +39,6 @@ int	key_release(int keycode, t_game *game)
 
 int	key(int keycode, t_game *game)
 {
-	// printf("keycode press: %d\n", keycode);
 	if (keycode == KEY_ECHAP)
 		ft_close(game);
 	if (keycode == KEY_I)
@@ -74,7 +72,6 @@ int	mouse(int keycode, int x, int y, t_game *game)
 {
 	(void)x;
 	(void)y;
-	// printf("mouse press: %d\n", keycode);
 	if (keycode == KEY_SCROLL_UP)
 		ft_zoom(game, ZOOM_IN_SCROLL);
 	else if (keycode == KEY_SCROLL_DOWN)

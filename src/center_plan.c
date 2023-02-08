@@ -6,13 +6,14 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:03:03 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/07 15:34:53 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 11:33:20 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-float	center_plan(t_coordonnee_3d *tab, unsigned int len, t_coordonnee_3d *origine)
+float	center_plan(t_coordonnee_3d *tab, unsigned int len,
+		t_coordonnee_3d *origine)
 {
 	unsigned int	i;
 	float			min_x;

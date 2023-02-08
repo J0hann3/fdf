@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_split.c                                       :+:      :+:    :+:   */
+/*   put_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 12:49:18 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/08 11:46:21 by jvigny           ###   ########.fr       */
+/*   Created: 2023/02/08 11:43:13 by jvigny            #+#    #+#             */
+/*   Updated: 2023/02/08 11:43:38 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	free_split(char **res)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	unsigned int	i;
+	char	*dst;
 
-	i = 0;
-	while (res[i] != NULL)
-	{
-		free(res[i]);
-		i++;
-	}
-	free(res);
+	dst = data->addr + (y * data->line_length + x * data->octets_per_pixel);
+	*(unsigned int *)dst = color;
 }

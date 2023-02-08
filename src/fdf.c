@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:17:53 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/08 10:47:01 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 11:34:58 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,37 @@ int	main(int argc, char **argv)
 	game.tab_const = ft_strdup(game.tab, game.len, &game);
 	ft_projection_iso(&game);
 	mlx_do_key_autorepeatoff(game.mlx);
-	mlx_hook(game.mlx_win, 02, (1L<<0), key, &game);
-	mlx_hook(game.mlx_win, 03, (1L<<1), key_release, &game);
-	mlx_hook(game.mlx_win, 04, (1L<<2), mouse, &game);
-	mlx_hook(game.mlx_win, 17, (1L<<5), ft_close, &game);
+	mlx_hook(game.mlx_win, 02, (1L << 0), key, &game);
+	mlx_hook(game.mlx_win, 03, (1L << 1), key_release, &game);
+	mlx_hook(game.mlx_win, 04, (1L << 2), mouse, &game);
+	mlx_hook(game.mlx_win, 17, (1L << 5), ft_close, &game);
 	mlx_loop_hook(game.mlx, &ft_move, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }
 
 	//test octave
-	// draw_line((t_coordonnee_2d){700, 700}, (t_coordonnee_2d){1000, 800}, &img, 0x11FF);
+	// draw_line((t_coordonnee_2d){700, 700}, (t_coordonnee_2d){1000, 800},
+	//		&img, 0x11FF);
 	// printf("--------------------------\n");
-	// draw_line((t_coordonnee_2d){700, 700}, (t_coordonnee_2d){800, 1000}, &img, 0x00FF);
+	// draw_line((t_coordonnee_2d){700, 700}, (t_coordonnee_2d){800, 1000},
+	//		&img, 0x00FF);
 	// printf("--------------------------\n");
-	// draw_line((t_coordonnee_2d){700, 700}, (t_coordonnee_2d){600, 1000}, &img, 0xFFFF);
+	// draw_line((t_coordonnee_2d){700, 700}, (t_coordonnee_2d){600, 1000},
+	//		&img, 0xFFFF);
 	// printf("--------------------------\n");
-	// draw_line((t_coordonnee_2d){700, 700}, (t_coordonnee_2d){400, 800}, &img, 0xEEFF);
+	// draw_line((t_coordonnee_2d){700, 700}, (t_coordonnee_2d){400, 800},
+	//		&img, 0xEEFF);
 	// printf("--------------------------\n");
-	// draw_line((t_coordonnee_2d){700, 700}, (t_coordonnee_2d){400, 600}, &img, 0xDDFF);
+	// draw_line((t_coordonnee_2d){700, 700}, (t_coordonnee_2d){400, 600},
+	//		&img, 0xDDFF);
 	// printf("--------------------------\n");
-	// draw_line((t_coordonnee_2d){700, 700}, (t_coordonnee_2d){600, 400}, &img, 0xCCFF);
+	// draw_line((t_coordonnee_2d){700, 700}, (t_coordonnee_2d){600, 400},
+	//		&img, 0xCCFF);
 	// printf("--------------------------\n");
-	// draw_line((t_coordonnee_2d){700, 700}, (t_coordonnee_2d){800, 400}, &img, 0xBBFF);
+	// draw_line((t_coordonnee_2d){700, 700}, (t_coordonnee_2d){800, 400},
+	//		&img, 0xBBFF);
 	// printf("--------------------------\n");
-	// draw_line((t_coordonnee_2d){0, 51}, (t_coordonnee_2d){501, 45}, &img, 0xff00);
+	// draw_line((t_coordonnee_2d){0, 51}, (t_coordonnee_2d){501, 45},
+	//		&img, 0xff00);
 	// printf(" %d %s\n", __LINE__, __FILE__);

@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:12:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/07 16:15:08 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 11:32:21 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	rotate_plan_isometrique(t_coordonnee_3d *tab_3d,
 {
 	unsigned int	i;
 	t_coordonnee_3d	*tmp;
-	float			z;
-	float			x;
-	float			y;
+	t_coordonnee_3d	pt;
 	double			alpha_sin;
 	double			alpha_cos;
 	double			beta_sin;
@@ -36,14 +34,14 @@ void	rotate_plan_isometrique(t_coordonnee_3d *tab_3d,
 		tmp = tab_3d;
 	while (i < len)
 	{
-		x = tmp[i].x;
-		y = tmp[i].y;
-		z = tmp[i].z;
-		tab_3d[i].x = x * beta_cos - z * beta_sin;
-		tab_3d[i].y = x * alpha_sin * beta_sin + y * alpha_cos + z * alpha_sin
-			* beta_cos;
-		tab_3d[i].z = x * alpha_cos * beta_sin - y * alpha_sin + z * alpha_cos
-			* beta_cos;
+		pt.x = tmp[i].x;
+		pt.y = tmp[i].y;
+		pt.z = tmp[i].z;
+		tab_3d[i].x = pt.x * beta_cos - pt.z * beta_sin;
+		tab_3d[i].y = pt.x * alpha_sin * beta_sin + pt.y * alpha_cos + pt.z
+			* alpha_sin * beta_cos;
+		tab_3d[i].z = pt.x * alpha_cos * beta_sin - pt.y * alpha_sin + pt.z
+			* alpha_cos * beta_cos;
 		i++;
 	}
 }
@@ -53,9 +51,7 @@ void	rotate_plan_cabinet(t_coordonnee_3d *tab_3d, t_coordonnee_3d *tab_const,
 {
 	unsigned int	i;
 	t_coordonnee_3d	*tmp;
-	float			z;
-	float			x;
-	float			y;
+	t_coordonnee_3d	pt;
 	double			alpha_sin;
 	double			alpha_cos;
 
@@ -68,12 +64,12 @@ void	rotate_plan_cabinet(t_coordonnee_3d *tab_3d, t_coordonnee_3d *tab_const,
 		tmp = tab_3d;
 	while (i < len)
 	{
-		x = tmp[i].x;
-		y = tmp[i].y;
-		z = tmp[i].z;
-		tab_3d[i].x = x + (1. / 2.) * alpha_cos * z;
-		tab_3d[i].y = y + (1. / 2.) * alpha_sin * z;
-		tab_3d[i].z = z;
+		pt.x = tmp[i].x;
+		pt.y = tmp[i].y;
+		pt.z = tmp[i].z;
+		tab_3d[i].x = pt.x + (1. / 2.) * alpha_cos * pt.z;
+		tab_3d[i].y = pt.y + (1. / 2.) * alpha_sin * pt.z;
+		tab_3d[i].z = pt.z;
 		i++;
 	}
 }
@@ -82,8 +78,7 @@ void	rotate_plan_x(t_coordonnee_3d *tab_3d, unsigned int len,
 			double rotation)
 {
 	unsigned int	i;
-	float			z;
-	float			y;
+	t_coordonnee_3d	pt;
 	double			v_sin;
 	double			v_cos;
 
@@ -92,10 +87,10 @@ void	rotate_plan_x(t_coordonnee_3d *tab_3d, unsigned int len,
 	v_sin = sin(rotation);
 	while (i < len)
 	{
-		y = tab_3d[i].y;
-		z = tab_3d[i].z;
-		tab_3d[i].y = y * v_cos + z * v_sin;
-		tab_3d[i].z = -y * v_sin + z * v_cos;
+		pt.y = tab_3d[i].y;
+		pt.z = tab_3d[i].z;
+		tab_3d[i].y = pt.y * v_cos + pt.z * v_sin;
+		tab_3d[i].z = -pt.y * v_sin + pt.z * v_cos;
 		i++;
 	}
 }
@@ -104,8 +99,7 @@ void	rotate_plan_y(t_coordonnee_3d *tab_3d, unsigned int len,
 			double rotation)
 {
 	unsigned int	i;
-	float			z;
-	float			x;
+	t_coordonnee_3d	pt;
 	double			v_sin;
 	double			v_cos;
 
@@ -114,10 +108,10 @@ void	rotate_plan_y(t_coordonnee_3d *tab_3d, unsigned int len,
 	v_sin = sin(rotation);
 	while (i < len)
 	{
-		x = tab_3d[i].x;
-		z = tab_3d[i].z;
-		tab_3d[i].x = x * v_cos + z * v_sin;
-		tab_3d[i].z = -x * v_sin + z * v_cos;
+		pt.x = tab_3d[i].x;
+		pt.z = tab_3d[i].z;
+		tab_3d[i].x = pt.x * v_cos + pt.z * v_sin;
+		tab_3d[i].z = -pt.x * v_sin + pt.z * v_cos;
 		i++;
 	}
 }
@@ -126,8 +120,7 @@ void	rotate_plan_z(t_coordonnee_3d *tab_3d, unsigned int len,
 			double rotation)
 {
 	unsigned int	i;
-	float			x;
-	float			y;
+	t_coordonnee_3d	pt;
 	double			v_sin;
 	double			v_cos;
 
@@ -136,10 +129,10 @@ void	rotate_plan_z(t_coordonnee_3d *tab_3d, unsigned int len,
 	v_sin = sin(rotation);
 	while (i < len)
 	{
-		x = tab_3d[i].x;
-		y = tab_3d[i].y;
-		tab_3d[i].x = x * v_cos - y * v_sin;
-		tab_3d[i].y = x * v_sin + y * v_cos;
+		pt.x = tab_3d[i].x;
+		pt.y = tab_3d[i].y;
+		tab_3d[i].x = pt.x * v_cos - pt.y * v_sin;
+		tab_3d[i].y = pt.x * v_sin + pt.y * v_cos;
 		i++;
 	}
 }

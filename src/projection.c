@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:39:55 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/08 11:17:02 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 11:38:18 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	ft_projection_iso(t_game *game)
 	zoom = center_plan(game->tab, game->len, &game->repere);
 	apply_zoom(game, zoom);
 	bzero(game->img->addr, HEIGHT * WIDTH * 4);
-	ft_print(game->tab, game->len);
 	link_point(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img->img, 0, 0);
 	return (0);
