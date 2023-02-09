@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 15:11:16 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/08 11:13:01 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/09 12:48:41 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_rotate(t_game *game, float angle, char plan)
 		rotate_plan_z(game->tab, game->len, angle);
 	else if (plan == 'x')
 		rotate_plan_x(game->tab, game->len, angle);
-	bzero(game->img->addr, HEIGHT * WIDTH * 4);
+	ft_bzero(game->img->addr, HEIGHT * WIDTH * 4);
 	link_point(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img->img, 0, 0);
 	return (0);
@@ -54,7 +54,7 @@ int	ft_rotate(t_game *game, float angle, char plan)
 int	ft_translate(t_game *game, t_coordonnee_3d origine)
 {
 	translation_repere(game, origine);
-	bzero(game->img->addr, HEIGHT * WIDTH * 4);
+	ft_bzero(game->img->addr, HEIGHT * WIDTH * 4);
 	link_point(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img->img, 0, 0);
 	return (0);
@@ -63,7 +63,7 @@ int	ft_translate(t_game *game, t_coordonnee_3d origine)
 int	ft_zoom(t_game *game, float zoom)
 {
 	apply_zoom(game, zoom);
-	bzero(game->img->addr, HEIGHT * WIDTH * 4);
+	ft_bzero(game->img->addr, HEIGHT * WIDTH * 4);
 	link_point(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img->img, 0, 0);
 	return (0);

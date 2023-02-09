@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:32:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/09 12:36:38 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/09 13:17:48 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ typedef struct s_game
 }	t_game;
 
 // ------ Utils ------
+void			ft_bzero(void *s, unsigned int n);
 double			ft_abs(double a);
 int				ft_atoi(const char *str);
 unsigned int	ft_strlen(const char *s);
