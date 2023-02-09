@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:32:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/09 11:44:27 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/09 12:36:38 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,12 @@
 #  define HEIGHT 1000
 # endif
 
-# ifndef COLOR
-#  define COLOR 0xFF00FF
+# ifndef COLOR_1
+#  define COLOR_1 0xFF00FF
+# endif
+
+# ifndef COLOR_2
+#  define COLOR_2 0x6666FF
 # endif
 
 # ifndef M_PI
@@ -89,7 +93,6 @@ typedef struct u_color_f
 	float	blue;
 	float	green;
 	float	red;
-	float	alpha;
 }	t_color_f;
 
 typedef struct s_line_draw

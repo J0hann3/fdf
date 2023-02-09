@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 17:01:58 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/07 15:36:03 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/09 11:54:59 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ t_coordonnee_3d	sub(t_coordonnee_3d a, t_coordonnee_3d b)
 {
 	t_coordonnee_3d	new;
 
-	new.x = a.x - b.x;
-	new.y = a.y - b.y;
+	new.x = (int)(a.x - b.x);
+	new.y = (int)(a.y - b.y);
 	new.color = a.color;
 	return (new);
 }

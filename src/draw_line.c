@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 11:50:08 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/09 11:49:12 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/09 12:37:21 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	draw_line(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 	int	dx;
 	int	dy;
 
-	printf("pt1.x:%f	pt1.y:%f	pt2.x:%f	pt2.y:%f\n", pt1.x, pt1.y, pt2.x, pt2.y);
 	dx = ft_abs(pt2.x - pt1.x);
 	dy = ft_abs(pt2.y - pt1.y);
 	if (dy == 0)
