@@ -6,7 +6,7 @@
 #    By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/31 18:39:31 by jvigny            #+#    #+#              #
-#    Updated: 2023/02/08 20:03:12 by jvigny           ###   ########.fr        #
+#    Updated: 2023/02/09 11:40:25 by jvigny           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ UTILS = utils/
 SRC_LIST = fdf.c parsing.c rotation.c t_coordonnee_3d.c \
 	$(GNL)get_next_line.c $(GNL)get_next_line_utils.c \
 	$(UTILS)ft_split.c $(UTILS)ft_atoi.c $(UTILS)ft_strlen.c draw_line.c \
-	center_plan.c translation.c $(UTILS)utils.c init_game.c \
+	draw_line1.c center_plan.c translation.c $(UTILS)utils.c init_game.c \
 	link_point.c $(UTILS)free_split.c ft_move.c find_min_max.c key.c \
 	fill_color.c color.c $(UTILS)ft_strdup.c projection.c error.c \
 	put_pixel.c hook.c test_error_file.c trigo.c

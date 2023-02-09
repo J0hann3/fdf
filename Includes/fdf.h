@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:32:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/08 20:01:08 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/09 11:44:27 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@
 # define KEY_I 105
 # define KEY_P 112
 
-# define TRANSLATION 0.25
+# define TRANSLATION 0.45
 # define ZOOM_IN_SCROLL 1.01
 # define ZOOM_OUT_SCROLL 0.99
-# define ZOOM_IN 1.0001
-# define ZOOM_OUT 0.9999
+# define ZOOM_IN 1.001
+# define ZOOM_OUT 0.999
 # define ROTATION 0.001
 
 typedef struct s_trigo
@@ -91,6 +91,18 @@ typedef struct u_color_f
 	float	red;
 	float	alpha;
 }	t_color_f;
+
+typedef struct s_line_draw
+{
+	int			dx;
+	int			dy;
+	int			x;
+	int			y;
+	int			add;
+	double		a;
+	double		error;
+	t_color_f	e_color;
+}	t_line_draw;
 
 typedef struct s_coordonnee_3d
 {
@@ -161,6 +173,10 @@ void			fill_color(t_game *game);
 
 // ------ Draw ------
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void			line_diagonale_haut(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
+					t_data *data);
+void			line_diagonale_bas(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
+					t_data *data);
 void			draw_line(t_coordonnee_3d pt1, t_coordonnee_3d pt2,
 					t_data *data);
 void			link_point(t_game *game);
