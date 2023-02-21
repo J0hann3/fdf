@@ -6,14 +6,14 @@
 #    By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/31 18:39:31 by jvigny            #+#    #+#              #
-#    Updated: 2023/02/09 13:18:13 by jvigny           ###   ########.fr        #
+#    Updated: 2023/02/21 14:42:06 by jvigny           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
 CC = cc
-CFLAGS =  -Wall -Werror -Wextra -g3 -Ofast
+CFLAGS =  -Wall -Werror -Wextra -g3
 LFLAGS = -lmlx -lXext -lX11 -lm -L$(MINILIBX_DIR)
 INCLUDES = -I$(MINILIBX_HEADERS) -I$(HEADERS_DIR)
 
@@ -34,7 +34,8 @@ SRC_LIST = fdf.c parsing.c rotation.c t_coordonnee_3d.c \
 	draw_line1.c center_plan.c translation.c $(UTILS)utils.c init_game.c \
 	link_point.c $(UTILS)free_split.c ft_move.c find_min_max.c key.c \
 	fill_color.c color.c $(UTILS)ft_strdup.c projection.c error.c \
-	put_pixel.c hook.c test_error_file.c trigo.c $(UTILS)ft_bzero.c
+	put_pixel.c hook.c test_error_file.c trigo.c $(UTILS)ft_bzero.c \
+	$(UTILS)ft_strlcpy.c
 SRC_DIR = ./src/
 SRC = $(addprefix $(SRC_DIR), $(SRC_LIST))
 

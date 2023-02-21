@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:32:17 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/09 13:17:48 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/21 14:32:29 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ t_coordonnee_3d	*ft_strdup(const t_coordonnee_3d *s, unsigned int len,
 					t_game *game);
 int				error(t_game *mlx, int boolean);
 t_trigo			fill_trigo(double angle);
+size_t			ft_strlcpy(char *dest, const char *src, size_t n);
 
 // ------ Init ------
 void			init_null_game(t_game *game, t_data *img);
