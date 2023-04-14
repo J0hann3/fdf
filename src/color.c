@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:38:28 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/09 12:30:17 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/04/14 16:38:41 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	c_color(t_color color1, t_color_f gradient, int x, int x1)
 	t_color	color;
 
 	color.alpha = 0;
-	color.red = color1.red + (int)(gradient.red * (x - x1)) & 0xFF;
-	color.green = color1.green + (int)(gradient.green * (x - x1))
-		& 0xFF;
-	color.blue = color1.blue + (int)(gradient.blue * (x - x1)) & 0xFF;
+	color.red = color1.red + ((int)(gradient.red * (x - x1)) & 0xFF);
+	color.green = color1.green + ((int)(gradient.green * (x - x1))
+		& 0xFF);
+	color.blue = color1.blue + ((int)(gradient.blue * (x - x1)) & 0xFF);
 	return (color.color);
 }
