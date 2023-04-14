@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:39:52 by jvigny            #+#    #+#             */
-/*   Updated: 2023/01/23 17:27:42 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 11:46:03 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	nb_mot(char const *s, char c)
 {
-	int		res;
-	size_t	last_rep;
-	size_t	i;
+	int				res;
+	unsigned int	last_rep;
+	unsigned int	i;
 
 	res = 0;
 	i = 0;

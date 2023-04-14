@@ -6,32 +6,37 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 20:57:56 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/02 13:01:48 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/07 16:27:58 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	init_game(t_game *game, t_data *img)
+void	init_null_game(t_game *game, t_data *img)
+{
+	img->img = NULL;
+	game->img = img;
+	game->mlx = NULL;
+	game->mlx_win = NULL;
+	game->tab = NULL;
+	game->tab_const = NULL;
+}
+
+void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
-		return (0);
+		error(game, 1);
 	game->mlx_win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "FdF");
 	if (game->mlx_win == NULL)
-	{
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-		return (0);
-	}
-	game->img = img;
+		error(game, 1);
 	game->img->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (game->img->img == NULL)
-		return (0);
-	game->img->addr = mlx_get_data_addr(game->img->img, &game->img->octets_per_pixel, &game->img->line_length,
+		error(game, 1);
+	game->img->addr = mlx_get_data_addr(game->img->img,
+			&game->img->octets_per_pixel, &game->img->line_length,
 			&game->img->endian);
 	game->img->octets_per_pixel = game->img->octets_per_pixel / 8;
-	return (1);
 }
 
 void	init_move(t_game *game, t_move *move)

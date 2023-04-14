@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 12:49:46 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/02 14:06:10 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 18:31:02 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	key_release(int keycode, t_game *game)
 {
-	// printf("keycode release: %d\n", keycode);
 	if (keycode == KEY_UP)
 		game->interaction->translate_up = 0;
 	else if (keycode == KEY_DOWN)
@@ -38,11 +37,22 @@ int	key_release(int keycode, t_game *game)
 	return (1);
 }
 
+static void	key1(int keycode, t_game *game)
+{
+	if (keycode == KEY_ROTATION_D)
+		game->interaction->rotate_d = 1;
+	else if (keycode == KEY_ROTATION_S)
+		game->interaction->rotate_s = 1;
+}
+
 int	key(int keycode, t_game *game)
 {
-	// printf("keycode press: %d\n", keycode);
 	if (keycode == KEY_ECHAP)
 		ft_close(game);
+	if (keycode == KEY_I)
+		ft_projection_iso(game);
+	if (keycode == KEY_P)
+		ft_projection_cabinet(game);
 	else if (keycode == KEY_UP)
 		game->interaction->translate_up = 1;
 	else if (keycode == KEY_DOWN)
@@ -59,10 +69,7 @@ int	key(int keycode, t_game *game)
 		game->interaction->rotate_a = 1;
 	else if (keycode == KEY_ROTATION_W)
 		game->interaction->rotate_w = 1;
-	else if (keycode == KEY_ROTATION_D)
-		game->interaction->rotate_d = 1;
-	else if (keycode == KEY_ROTATION_S)
-		game->interaction->rotate_s = 1;
+	key1(keycode, game);
 	return (1);
 }
 
@@ -70,7 +77,6 @@ int	mouse(int keycode, int x, int y, t_game *game)
 {
 	(void)x;
 	(void)y;
-	// printf("mouse press: %d\n", keycode);
 	if (keycode == KEY_SCROLL_UP)
 		ft_zoom(game, ZOOM_IN_SCROLL);
 	else if (keycode == KEY_SCROLL_DOWN)

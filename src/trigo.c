@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   trigo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 10:19:58 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/09 13:17:20 by jvigny           ###   ########.fr       */
+/*   Created: 2023/02/08 19:58:53 by jvigny            #+#    #+#             */
+/*   Updated: 2023/02/08 20:03:52 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_bzero(void *s, unsigned int n)
+t_trigo	fill_trigo(double angle)
 {
-	unsigned int	i;
+	t_trigo	alpha;
 
-	i = 0;
-	while (i < n)
-	{
-		((char *)s)[i] = 0;
-		i++;
-	}
+	alpha.cos = cos(angle);
+	alpha.sin = sin(angle);
+	return (alpha);
 }

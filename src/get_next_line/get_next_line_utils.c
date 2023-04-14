@@ -6,7 +6,7 @@
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:06:58 by jvigny            #+#    #+#             */
-/*   Updated: 2022/11/24 11:19:55 by jvigny           ###   ########.fr       */
+/*   Updated: 2023/02/08 10:57:18 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ ssize_t	find_end_line(char const *str, ssize_t len)
 
 char	*fill_result(t_line *line, int fd, char *res, ssize_t len)
 {
+	(void)fd;
 	while (len == -1)
 	{
 		line->ret = read(fd, line->buffer, BUFFER_SIZE);
 		if (line->ret == -1)
-			return (NULL);
+			return (perror("Error"), NULL);
 		if (line->ret == 0)
 			return (res);
 		len = find_end_line(line->buffer, line->ret);
@@ -64,7 +65,7 @@ char	*ft_strjoin(t_line *line, char *begin, char *res)
 	j = 0;
 	res_f = malloc(sizeof(char) * len + 1);
 	if (res_f == 0)
-		return (0);
+		return (perror("Error"), NULL);
 	while (res != 0 && j < line->len_res)
 	{
 		res_f[j] = res[j];

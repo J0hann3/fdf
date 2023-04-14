@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   translation.c                                      :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 14:30:14 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/07 15:27:08 by jvigny           ###   ########.fr       */
+/*   Created: 2022/11/08 18:04:11 by jvigny            #+#    #+#             */
+/*   Updated: 2023/02/07 16:29:25 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	translation(t_game *game, t_coordonnee_3d origine)
+t_coordonnee_3d	*ft_strdup(const t_coordonnee_3d *s, unsigned int len,
+		t_game *game)
 {
+	t_coordonnee_3d	*res;
 	unsigned int	i;
 
 	i = 0;
-	while (i < game->len)
+	res = malloc(sizeof(t_coordonnee_3d) * len);
+	if (res == NULL)
+		error(game, 1);
+	while (i < len)
 	{
-		game->tab[i].x = game->tab[i].x + origine.x;
-		game->tab[i].y = game->tab[i].y + origine.y;
-		game->tab[i].z = game->tab[i].z + origine.z;
+		res[i] = s[i];
 		i++;
 	}
-}
-
-void	translation_repere(t_game *game, t_coordonnee_3d origine)
-{
-	game->repere.x = game->repere.x + origine.x;
-	game->repere.y = game->repere.y + origine.y;
-	game->repere.z = game->repere.z + origine.z;
+	return (res);
 }

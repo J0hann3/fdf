@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   put_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvigny <jvigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 10:19:58 by jvigny            #+#    #+#             */
-/*   Updated: 2023/02/09 13:17:20 by jvigny           ###   ########.fr       */
+/*   Created: 2023/02/08 11:43:13 by jvigny            #+#    #+#             */
+/*   Updated: 2023/02/08 11:43:38 by jvigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_bzero(void *s, unsigned int n)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	unsigned int	i;
+	char	*dst;
 
-	i = 0;
-	while (i < n)
-	{
-		((char *)s)[i] = 0;
-		i++;
-	}
+	dst = data->addr + (y * data->line_length + x * data->octets_per_pixel);
+	*(unsigned int *)dst = color;
 }
