@@ -1,9 +1,18 @@
-[Subject FDF Project 42](FDF.pdf)
+<h1 align=center>💻 FdF</h1>
+<p align="center">
+  <img src="img/fdf.png?raw=true"/>
+</p>
 
--------A FAIRE-------
-	- Parsing des donnees a faire et les stocker dans une structure
-	- Fonction qui dessine une ligne entre deux points dans le plan 
-		isometrique en 2D
-	- Fonction qui fait une rotation de 30 degres du plan dans le sens horaire
-	- Fonction qui fait une translation changement de l'origine du repere
-	- Fonction qui ajoute le z aux coordonnes
+## About
+>This project This project is about representing a landscape as a 3D object
+>in which all surfaces are outlined in lines.
+
+[Subject FdF Project 42](FDF.pdf)
+
+## Setup
+
+```
+git clone https://github.com/J0hann3/fdf.git
+cd fdf
+make
+```
